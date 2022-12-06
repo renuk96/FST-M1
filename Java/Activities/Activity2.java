@@ -1,26 +1,24 @@
-package Activities;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Activity2 {
-    public static void main(String args[])
-    {
-        //int numbers[]=new int[5];
-        int numArr[] = {10, 77, 10, 54, -11, 10};
-        System.out.println("The sum of numbers is array is 30:"+sumCheck(numArr));
+    @Test
+    void notEnoughFunds() {
+        // Create an object for BankAccount class
+        BankAccount account = new BankAccount(9);
+
+        // Assertion for exception
+        assertThrows(NotEnoughFundsException.class, () -> account.withdraw(10));
     }
-        public static boolean sumCheck(int []numArr)
-        {int sum=0;
-            for (int num : numArr)
-            {
-                if(num==10)
-                sum = sum + num;
 
-            }
-            if (sum > 30)
-            {
-                return false;
+    @Test
+    void enoughFunds() {
+        // Create an object for BankAccount class
+        BankAccount account = new BankAccount(100);
 
-            }
-            return true;
-        }
-
+        // Assertion for no exceptions
+        assertDoesNotThrow(() -> account.withdraw(100));
+    }
 }
